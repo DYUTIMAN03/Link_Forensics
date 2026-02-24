@@ -1,0 +1,201 @@
+/* ═══ LinkSentry Content Script Styles ═══ */
+
+#linksentry-overlay {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    z-index: 2147483647;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-size: 13px;
+    line-height: 1.4;
+    color: #e0e0ff;
+}
+
+/* ─── FAB Button ─── */
+#linksentry-fab {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #111128, #1a1a3a);
+    border: 2px solid rgba(255, 45, 149, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow:
+        0 4px 20px rgba(0, 0, 0, 0.5),
+        0 0 20px rgba(255, 45, 149, 0.15);
+    transition: transform 0.2s, box-shadow 0.2s;
+    position: relative;
+}
+
+#linksentry-fab:hover {
+    transform: scale(1.1);
+    box-shadow:
+        0 4px 24px rgba(0, 0, 0, 0.6),
+        0 0 30px rgba(255, 45, 149, 0.25);
+}
+
+.linksentry-score {
+    position: absolute;
+    bottom: -2px;
+    right: -4px;
+    font-size: 10px;
+    font-weight: 900;
+    background: #111128;
+    padding: 1px 5px;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 45, 149, 0.3);
+    letter-spacing: 0.5px;
+}
+
+/* ─── Tooltip Panel ─── */
+#linksentry-tooltip {
+    position: absolute;
+    bottom: 64px;
+    right: 0;
+    width: 280px;
+    max-height: 380px;
+    overflow-y: auto;
+    background: linear-gradient(135deg, #111128 0%, #0a0a1a 100%);
+    border: 1px solid rgba(255, 45, 149, 0.2);
+    border-radius: 14px;
+    padding: 16px;
+    box-shadow:
+        0 8px 40px rgba(0, 0, 0, 0.7),
+        0 0 30px rgba(255, 45, 149, 0.08);
+    animation: ls-slide-up 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+#linksentry-tooltip.linksentry-hidden {
+    display: none;
+}
+
+@keyframes ls-slide-up {
+    from {
+        opacity: 0;
+        transform: translateY(10px) scale(0.96);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.ls-tt-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid rgba(255, 45, 149, 0.1);
+}
+
+.ls-tt-header strong {
+    font-size: 14px;
+    letter-spacing: 1px;
+    background: linear-gradient(135deg, #ff2d95, #d946ef);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.ls-tt-status {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.ls-tt-score {
+    font-size: 12px;
+    margin-bottom: 10px;
+    color: #8888aa;
+}
+
+.ls-tt-checks {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3px 8px;
+    margin-bottom: 10px;
+}
+
+.ls-tt-chk {
+    font-size: 10.5px;
+    color: #8888aa;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 2px 0;
+}
+
+.ls-tt-chk span {
+    font-size: 11px;
+}
+
+.ls-tt-threats {
+    border-top: 1px solid rgba(255, 45, 149, 0.1);
+    padding-top: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.ls-tt-threat {
+    font-size: 11px;
+    color: #ccc;
+    line-height: 1.4;
+}
+
+.ls-tt-sev {
+    font-size: 8px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    padding: 1px 5px;
+    border-radius: 3px;
+    margin-right: 4px;
+}
+
+.ls-sev-high {
+    background: rgba(239, 68, 68, 0.15);
+    color: #ef4444;
+}
+
+.ls-sev-medium {
+    background: rgba(245, 158, 11, 0.15);
+    color: #f59e0b;
+}
+
+.ls-sev-low {
+    background: rgba(6, 182, 212, 0.15);
+    color: #06b6d4;
+}
+
+.ls-tt-more {
+    font-size: 10px;
+    color: #ff2d95;
+    text-align: center;
+    padding-top: 4px;
+}
+
+.ls-tt-safe {
+    text-align: center;
+    color: #10b981;
+    font-size: 12px;
+    padding: 8px 0;
+    border-top: 1px solid rgba(255, 45, 149, 0.1);
+}
+
+/* Scrollbar */
+#linksentry-tooltip::-webkit-scrollbar {
+    width: 3px;
+}
+
+#linksentry-tooltip::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+#linksentry-tooltip::-webkit-scrollbar-thumb {
+    background: rgba(255, 45, 149, 0.3);
+    border-radius: 2px;
+}

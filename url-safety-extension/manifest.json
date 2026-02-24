@@ -1,0 +1,77 @@
+{
+  "manifest_version": 3,
+  "name": "LinkSentry — URL Safety Scanner",
+  "version": "2.1",
+  "description": "Real-time URL security analysis with 12 comprehensive checks. Detects phishing, typosquatting, homograph attacks, and more.",
+  "icons": {
+    "16": "icons/icon16.svg",
+    "48": "icons/icon48.svg",
+    "128": "icons/icon128.svg"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icons/icon16.svg",
+      "48": "icons/icon48.svg",
+      "128": "icons/icon128.svg"
+    },
+    "default_title": "LinkSentry — Scan URL"
+  },
+  "background": {
+    "service_worker": "sw-loader.js"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": [
+        "analyzer.js",
+        "content.js"
+      ],
+      "css": [
+        "content.css"
+      ],
+      "run_at": "document_idle"
+    },
+    {
+      "matches": [
+        "*://www.google.com/search*",
+        "*://www.google.co.in/search*",
+        "*://www.google.co.uk/search*",
+        "*://www.google.ca/search*",
+        "*://www.google.com.au/search*",
+        "*://www.google.de/search*",
+        "*://www.google.fr/search*"
+      ],
+      "js": [
+        "domains.js",
+        "analyzer.js",
+        "google-search.js"
+      ],
+      "css": [
+        "google-search.css"
+      ],
+      "run_at": "document_idle"
+    }
+  ],
+  "permissions": [
+    "activeTab",
+    "tabs",
+    "webNavigation",
+    "scripting",
+    "storage"
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "warning.html",
+        "warning.js",
+        "icons/*"
+      ],
+      "matches": [
+        "<all_urls>"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LinkSentry</title>
+    <link rel="stylesheet" href="popup.css" />
+</head>
+
+<body>
+
+    <!-- Pixel Cityscape Mini Background -->
+    <div class="bg-strip" id="bgStrip"></div>
+
+    <!-- Header -->
+    <header class="popup-header">
+        <svg class="shield-icon" viewBox="0 0 48 48" fill="none">
+            <path d="M24 4L6 12V22C6 33.1 13.7 43.3 24 46C34.3 43.3 42 33.1 42 22V12L24 4Z" fill="url(#sg)"
+                stroke="#ff2d95" stroke-width="2" />
+            <path d="M20 24L23 27L29 19" stroke="#fff" stroke-width="3" stroke-linecap="round"
+                stroke-linejoin="round" />
+            <defs>
+                <linearGradient id="sg" x1="6" y1="4" x2="42" y2="46">
+                    <stop stop-color="#ff2d95" />
+                    <stop offset="1" stop-color="#8b5cf6" />
+                </linearGradient>
+            </defs>
+        </svg>
+        <div class="header-text">
+            <h1>LINKSENTRY</h1>
+            <p>URL Threat Scanner</p>
+        </div>
+    </header>
+
+    <!-- Input -->
+    <div class="input-row">
+        <input type="text" id="urlInput" placeholder="Paste a URL to analyze…" autocomplete="off" spellcheck="false" />
+        <button id="scanBtn">⚡</button>
+    </div>
+
+    <!-- Spinner -->
+    <div class="spinner" id="spinner">
+        <div class="ring"></div>
+        <span>Scanning…</span>
+    </div>
+
+    <!-- Results -->
+    <div class="results" id="results">
+
+        <!-- Score -->
+        <div class="score-row" id="scoreRow">
+            <div class="score-circle" id="scoreCircle">
+                <svg viewBox="0 0 80 80">
+                    <circle class="bg-ring" cx="40" cy="40" r="34" />
+                    <circle class="fg-ring" id="fgRing" cx="40" cy="40" r="34" />
+                </svg>
+                <span class="score-val" id="scoreVal">—</span>
+            </div>
+            <div class="score-meta">
+                <div class="score-label" id="scoreLabel">—</div>
+                <div class="score-url" id="scoreUrl"></div>
+            </div>
+        </div>
+
+        <!-- Categories -->
+        <div class="cats" id="cats"></div>
+
+        <!-- Checks -->
+        <div class="checks" id="checks"></div>
+
+        <!-- Threats -->
+        <div class="threats" id="threats"></div>
+
+        <!-- Safe -->
+        <div class="safe-msg" id="safeMsg" style="display:none;">
+            <span>🛡️</span> All clear — no threats detected
+        </div>
+
+    </div>
+
+    <div class="footer">v2.1 • 12 Checks • K.A.V.A.C.H</div>
+
+    <script src="analyzer.js"></script>
+    <script src="popup.js"></script>
+</body>
+
+</html>

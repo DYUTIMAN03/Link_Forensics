@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>⚠️ LinkSentry Warning</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Orbitron:wght@400;700;900&family=Press+Start+2P&display=swap');
+
+        :root {
+            --bg: #0a0a1a;
+            --red: #ef4444;
+            --pink: #ff2d95;
+            --magenta: #d946ef;
+            --text: #e0e0ff;
+            --muted: #8888aa;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Share Tech Mono', monospace;
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* ─── Pixel Grid Background ─── */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(255, 45, 149, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 45, 149, 0.03) 1px, transparent 1px);
+            background-size: 20px 20px;
+            z-index: 0;
+        }
+
+        /* ─── Scan Lines ─── */
+        body::after {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background: repeating-linear-gradient(0deg,
+                    transparent,
+                    transparent 2px,
+                    rgba(0, 0, 0, 0.08) 2px,
+                    rgba(0, 0, 0, 0.08) 4px);
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .warning-container {
+            position: relative;
+            z-index: 2;
+            max-width: 620px;
+            width: 100%;
+            margin: 20px;
+            text-align: center;
+        }
+
+        /* ─── Danger Icon ─── */
+        .danger-icon {
+            font-size: 4rem;
+            margin-bottom: 16px;
+            animation: danger-pulse 1.5s ease-in-out infinite;
+        }
+
+        @keyframes danger-pulse {
+
+            0%,
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+
+            50% {
+                opacity: 0.6;
+                transform: scale(1.05);
+            }
+        }
+
+        .warning-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 900;
+            letter-spacing: 4px;
+            color: var(--red);
+            margin-bottom: 8px;
+            text-shadow: 0 0 20px rgba(239, 68, 68, 0.4);
+        }
+
+        .warning-subtitle {
+            font-size: 0.85rem;
+            color: var(--muted);
+            margin-bottom: 30px;
+            line-height: 1.5;
+        }
+
+        /* ─── URL Display ─── */
+        .blocked-url {
+            padding: 14px 20px;
+            background: rgba(239, 68, 68, 0.08);
+            border: 1px solid rgba(239, 68, 68, 0.2);
+            border-radius: 10px;
+            word-break: break-all;
+            font-size: 0.82rem;
+            color: var(--red);
+            margin-bottom: 24px;
+            text-align: left;
+        }
+
+        .blocked-url::before {
+            content: '🔗 Blocked URL: ';
+            color: var(--muted);
+            font-size: 0.7rem;
+            display: block;
+            margin-bottom: 6px;
+            letter-spacing: 1px;
+        }
+
+        /* ─── Score Display ─── */
+        .score-display {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 3rem;
+            font-weight: 900;
+            color: var(--red);
+            margin-bottom: 6px;
+            text-shadow: 0 0 30px rgba(239, 68, 68, 0.5);
+        }
+
+        .score-label {
+            font-size: 0.7rem;
+            color: var(--muted);
+            letter-spacing: 3px;
+            margin-bottom: 24px;
+        }
+
+        /* ─── Threats List ─── */
+        .threats-list {
+            text-align: left;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 30px;
+        }
+
+        .w-threat {
+            padding: 12px 16px;
+            background: rgba(10, 10, 30, 0.6);
+            border-radius: 10px;
+            border-left: 3px solid;
+            font-size: 0.8rem;
+        }
+
+        .w-threat.sev-high {
+            border-left-color: var(--red);
+        }
+
+        .w-threat.sev-medium {
+            border-left-color: #f59e0b;
+        }
+
+        .w-threat.sev-low {
+            border-left-color: #06b6d4;
+        }
+
+        .w-threat-head {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 4px;
+        }
+
+        .w-sev {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.5rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            padding: 2px 6px;
+            border-radius: 3px;
+        }
+
+        .w-sev.high {
+            background: rgba(239, 68, 68, 0.15);
+            color: var(--red);
+        }
+
+        .w-sev.medium {
+            background: rgba(245, 158, 11, 0.15);
+            color: #f59e0b;
+        }
+
+        .w-sev.low {
+            background: rgba(6, 182, 212, 0.15);
+            color: #06b6d4;
+        }
+
+        .w-threat-name {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.68rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .w-threat-msg {
+            color: var(--muted);
+            font-size: 0.72rem;
+            line-height: 1.4;
+        }
+
+        .w-threat-detail {
+            margin-top: 6px;
+            font-size: 0.68rem;
+            color: var(--muted);
+            opacity: 0.7;
+            line-height: 1.5;
+            padding: 8px 10px;
+            background: rgba(255, 45, 149, 0.03);
+            border-radius: 6px;
+        }
+
+        .w-threat-detail::before {
+            content: '💡 ';
+        }
+
+        /* ─── Buttons ─── */
+        .btn-row {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .btn-safe {
+            padding: 14px 40px;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 3px;
+            background: linear-gradient(135deg, #10b981, #34d399);
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: transform 0.15s, box-shadow 0.3s;
+            box-shadow: 0 4px 20px rgba(16, 185, 129, 0.3);
+        }
+
+        .btn-safe:hover {
+            transform: scale(1.04);
+            box-shadow: 0 4px 30px rgba(16, 185, 129, 0.5);
+        }
+
+        .btn-proceed {
+            padding: 8px 20px;
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 0.68rem;
+            color: var(--muted);
+            background: none;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 6px;
+            cursor: pointer;
+            transition: border-color 0.3s, color 0.3s;
+            letter-spacing: 1px;
+        }
+
+        .btn-proceed:hover {
+            border-color: rgba(239, 68, 68, 0.4);
+            color: var(--red);
+        }
+
+        .footer {
+            margin-top: 30px;
+            font-size: 0.6rem;
+            color: var(--muted);
+            opacity: 0.4;
+            letter-spacing: 2px;
+        }
+
+        @media (max-width: 480px) {
+            .warning-title {
+                font-size: 1.2rem;
+                letter-spacing: 2px;
+            }
+
+            .score-display {
+                font-size: 2.2rem;
+            }
+
+            .warning-container {
+                margin: 12px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="warning-container">
+        <div class="danger-icon">🚨</div>
+        <h1 class="warning-title">THREAT DETECTED</h1>
+        <p class="warning-subtitle">
+            LinkSentry has blocked this page because it poses a significant security risk.<br>
+            Review the detected threats below.
+        </p>
+
+        <div class="blocked-url" id="blockedUrl">—</div>
+
+        <div class="score-display" id="scoreDisplay">0</div>
+        <div class="score-label">SAFETY SCORE / 100</div>
+
+        <div class="threats-list" id="threatsList"></div>
+
+        <div class="btn-row">
+            <button class="btn-safe" onclick="goBack()">← GO BACK TO SAFETY</button>
+            <button class="btn-proceed" onclick="proceedAnyway()">I understand the risk — proceed anyway</button>
+        </div>
+
+        <div class="footer">LinkSentry v2.1 • K.A.V.A.C.H Club</div>
+    </div>
+
+    <script src="warning.js"></script>
+</body>
+
+</html>
