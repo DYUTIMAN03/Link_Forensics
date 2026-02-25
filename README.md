@@ -43,27 +43,6 @@ LinkForensics provides four integrated security feedback channels:
 | 🚨 Warning Page | Full-screen interstitial for dangerous URLs |
 
 ---
-
-## 🚀 Installation
-
-### From Source (Developer Mode)
-
-```bash
-git clone https://github.com/DYUTIMAN03/Link_Forensics.git
-cd Link_Forensics
-
-Open chrome://extensions/
-
-Enable Developer Mode
-
-Click Load unpacked
-
-Select url-safety-extension/
-
-Pin the extension
-
-Works on Chrome, Edge, Brave, Opera
-
 ⚙️ How It Works
 User opens URL
       │
