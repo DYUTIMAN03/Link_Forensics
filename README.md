@@ -50,7 +50,14 @@
 git clone https://github.com/DYUTIMAN03/Link_Forensics.git
 cd Link_Forensics
 ```
+## ⚡ Quick Start (For users)
 
+1. Load the extension via `chrome://extensions` (Developer Mode → Load unpacked → `url-safety-extension/`)
+2. Open any website (e.g., https://google.com)
+3. Click the LinkForensics icon to view the safety score  
+4. Try pasting a URL in the popup to scan manually
+
+*Takes under 1 minute to test the core features.*
 ⚙️ How It Works
 
 User opens URL
