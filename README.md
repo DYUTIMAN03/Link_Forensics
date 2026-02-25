@@ -187,6 +187,15 @@ Future versions aim to complement local checks with optional reputation services
 
 ---
 
+## 🎥 2-Minute Demo
+
+▶️ Watch the walkthrough:  
+https://drive.google.com/file/d/1NZufNWsCxthpifyPsObSRmm-wywX96FL/view?usp=sharing
+
+*Shows real-time scanning, floating overlay, Google search badges, and the client-side architecture.*
+
+---
+
 📄 License
 
 MIT License
