@@ -31,6 +31,19 @@
 
 ---
 
+## 🌟 What Makes LinkForensics Different (USP)
+
+Unlike typical URL checkers that rely on cloud APIs, LinkForensics performs **12 security checks entirely in-browser**, enabling:
+
+- ⚡ Instant analysis with near-zero latency  
+- 🔒 Zero data sharing, full privacy  
+- 📴 Offline protection  
+- 🧠 Explainable results for every risk flag  
+
+This makes it suitable for privacy-sensitive users and restricted environments.
+
+---
+
 ## 📸 UI Touchpoints
 
 | Touchpoint | Description |
@@ -136,6 +149,17 @@ No external APIs. No server. 100% in-browser analysis.
 
 ---
 
+## ⚠️ Current Limitations
+
+- Heuristic-based detection may miss brand-new zero-day phishing domains  
+- No live reputation feeds (by design, to preserve privacy)  
+- Does not yet scan links inside emails or PDFs  
+- Accuracy depends on rule coverage and curated domain lists  
+
+Future versions aim to complement local checks with optional reputation services.
+
+---
+
 👥 Team
 | Name               | Role      |
 | ------------------ | --------- |
@@ -153,6 +177,13 @@ No external APIs. No server. 100% in-browser analysis.
 ![LinkForensics Extension](extension.png)
 
 *Screenshots show example scans using safe public URLs for demonstration.*
+
+### Google Search Badges (Inline Safety Labels)
+![LinkForensics Search Badges](search-badges.png)
+
+*Safety badges injected into Google Search results for instant risk awareness.*
+
+**Tested on:** Chrome 120+, Edge 120+, Brave 1.60+ (Windows 10/11)
 
 ---
 
