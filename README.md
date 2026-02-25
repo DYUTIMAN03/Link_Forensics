@@ -91,6 +91,21 @@ User opens URL
 
 ---
 
+## 🧭 Architecture
+
+![LinkForensics Architecture](architecture.png)
+
+**Flow (client-side only):**  
+User visits URL →  
+Chrome intercepts navigation →  
+12 security checks run locally →  
+Score computed (0–100) →  
+Result shown via overlay, popup, badges, or warning page  
+
+No external APIs. No server. 100% in-browser analysis.
+
+---
+
 ## 🛠️ Tech Stack
 
 | Layer | Technology |
@@ -119,6 +134,18 @@ User opens URL
 | ------------------ | --------- |
 | Dyutiman Bharadwaj | Developer |
 | Aayush Saha        | Developer |
+
+---
+
+## 📸 Preview
+
+### Demo (Standalone Scanner)
+![LinkSentry Demo](demo.png)
+
+### Chrome Extension (Popup / Overlay)
+![LinkForensics Extension](extension.png)
+
+*Screenshots show example scans using safe public URLs for demonstration.*
 
 ---
 
