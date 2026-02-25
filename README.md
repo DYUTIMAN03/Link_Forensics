@@ -1,6 +1,6 @@
 <div align="center">
 
-# 🛡️ LinkForensics  
+# 🛡️ LinkForensics
 ### Real-Time URL Threat Intelligence — Chrome Extension  
 
 [![Chrome MV3](https://img.shields.io/badge/Chrome-Manifest%20V3-4285F4?logo=googlechrome&logoColor=white)](https://developer.chrome.com/docs/extensions/mv3/)  
