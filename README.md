@@ -12,7 +12,7 @@
 
 *Detects phishing, typosquatting, homograph attacks, malware patterns, and more — directly in your browser.*
 
-[Features](#-features) · [Installation](#-installation) · [How-It-Works](#-how-it-works) · [Security-Checks](#-12-security-checks) · [Tech-Stack](#-tech-stack) · [Contributing](#-contributing)
+[Features](#-features) · [Installation](#-installation) · [How It Works](#-how-it-works) · [Security Checks](#-12-security-checks) · [Tech Stack](#-tech-stack) · [Contributing](#-contributing)
 
 </div>
 
@@ -33,8 +33,6 @@
 
 ## 📸 UI Touchpoints
 
-LinkForensics provides four integrated security feedback channels:
-
 | Touchpoint | Description |
 |:--:|---|
 | 🟢 Floating Shield | Draggable overlay on every page showing safety status |
@@ -43,105 +41,92 @@ LinkForensics provides four integrated security feedback channels:
 | 🚨 Warning Page | Full-screen interstitial for dangerous URLs |
 
 ---
+
+## 🚀 Installation
+
+### From Source (Developer Mode)
+
+```bash
+git clone https://github.com/DYUTIMAN03/Link_Forensics.git
+cd Link_Forensics
+```
+
 ⚙️ How It Works
+
 User opens URL
-      │
-      ▼
-Intercept via webNavigation
-      │
-      ▼
-Domain DB + 12 Security Checks
-      │
-      ▼
-Safety Score (0–100)
-      │
-      ▼
-Overlay • Search Badges • Popup • Warning Page
-Scoring
-Score	Status	Action
-80–100	Safe	Normal browsing
-60–79	Caution	Warning shown
-0–59	Dangerous	Alert
-≤ 40	Blocked	Interstitial
-🔬 12 Security Checks
-#	Check	Detects	Risk
-1	Typosquatting	Fake domains	🔴
-2	Homograph	Unicode spoofing	🔴
-3	High-Risk TLD	.zip, .tk, .xyz	🟡
-4	Download Trap	.exe, .apk	🔴
-5	Domain Patterns	Random strings	🟡
-6	Phishing Words	"verify", "login"	🟡
-7	HTTPS Check	Missing SSL	🟡
-8	Long URLs	Obfuscation	🟢
-9	Special Chars	@, // abuse	🟡
-10	IP URLs	Raw IP usage	🔴
-11	URL Shorteners	Hidden targets	🟢
-12	Deceptive Ads	Click fraud	🟡
-📁 Project Structure
-LinkForensics/
-├── DEMO.html
-├── analyzer.js
-└── url-safety-extension/
-    ├── manifest.json
-    ├── background.js
-    ├── content.js
-    ├── google-search.js
-    ├── popup.html
-    ├── warning.html
-    └── icons/
-🛠️ Tech Stack
-Layer	Tech
-Platform	Chrome MV3
-Language	JavaScript (ES6+)
-UI	HTML + CSS
-APIs	webNavigation, tabs, storage
-Architecture	Event-driven service worker
-Why Zero APIs?
+→ Intercept via Chrome API
+→ Run 12 security checks
+→ Compute score (0–100)
+→ Show result in overlay, popup, badges, or warning page
 
-✔ Privacy
-✔ Speed
-✔ Offline
-✔ Free
-✔ No backend
+---
 
-🌐 Browser Support
-Browser	Status
-Chrome	✅
-Edge	✅
-Brave	✅
-Opera	⚠️ Untested
-Firefox	❌
-🗺️ Roadmap
+### Scoring
 
-ML-based URL classifier
+| Score | Status | Action |
+|------:|:------:|:------|
+| 80–100 | Safe | Normal browsing |
+| 60–79 | Caution | Warning shown |
+| 0–59 | Dangerous | Alert |
+| ≤ 40 | Blocked | Interstitial |
 
-Safe Browsing API (optional)
+---
 
-Hover safety preview
+## 🔬 12 Security Checks
 
-Gmail link scanning
+| # | Check | Detects | Risk |
+|:-:|------|---------|:---:|
+| 1 | Typosquatting Detection | Fake domains mimicking real sites | 🔴 High |
+| 2 | Homograph Attack | Unicode spoofing of characters | 🔴 High |
+| 3 | High-Risk TLD | `.zip`, `.tk`, `.xyz` | 🟡 Medium |
+| 4 | Download Trap | `.exe`, `.apk`, `.scr` | 🔴 High |
+| 5 | Domain Pattern Analysis | Random strings | 🟡 Medium |
+| 6 | Phishing Keywords | "verify", "login" | 🟡 Medium |
+| 7 | HTTPS Check | Missing SSL | 🟡 Medium |
+| 8 | Long URLs | Obfuscation | 🟢 Low |
+| 9 | Special Characters | `@`, `//` abuse | 🟡 Medium |
+| 10 | IP URLs | Raw IP usage | 🔴 High |
+| 11 | URL Shorteners | Hidden targets | 🟢 Low |
+| 12 | Deceptive Ads | Click fraud | 🟡 Medium |
 
-Crowdsourced threat DB
+---
 
-Firefox support
+## 🛠️ Tech Stack
 
-🤝 Contributing
-git checkout -b feature/your-feature
-git commit -m "Add feature"
-git push origin feature/your-feature
+| Layer | Technology |
+|------|------------|
+| Platform | Chrome Extension (Manifest V3) |
+| Language | JavaScript (ES6+) |
+| UI | HTML + CSS |
+| APIs | webNavigation, tabs, storage |
+| Architecture | Event-driven Service Worker |
 
-Open a PR 🚀
+---
+
+## 🗺️ Roadmap
+
+- [ ] ML-based URL classifier  
+- [ ] Safe Browsing API (optional)  
+- [ ] Hover safety preview  
+- [ ] Gmail link scanning  
+- [ ] Crowdsourced threat DB  
+- [ ] Firefox support
+
+---
 
 👥 Team
-Name	Role
-Dyutiman Bharadwaj	Developer
-Aayush Saha	Developer
+| Name               | Role      |
+| ------------------ | --------- |
+| Dyutiman Bharadwaj | Developer |
+| Aayush Saha        | Developer |
 
-Built for K.A.V.A.C.H Club · Feb 2026
+---
 
 📄 License
 
 MIT License
+
+---
 
 <div align="center">
 
